@@ -1,0 +1,30 @@
+!!!
+- conditional_html
+%head
+  %meta{:charset => "utf-8"}
+  %title Tweet Depository
+  = csrf_meta_tags
+  %meta{:content => "Archive your Tweets", :name => "description"}
+  %meta{:content => "on", "http-equiv" => "cleartype"}
+  %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+  %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+
+  = favicon_link_tag "/favicon.ico"
+
+  = stylesheet_link_tag "global", media: "all"
+  = stylesheet_link_tag "layout", media: "all and (min-width: 33.236em)"
+
+  -# 30em + (1.618em * 2) = 33.236em
+  -# Eliminates potential of horizontal scrolling in most cases
+  /[if (lt IE 9) & (!IEMobile)]
+    = stylesheet_link_tag "layout", media: "all"
+  = javascript_include_tag "modernizr"
+
+%body
+  #container.cf
+    %header
+      / Some sort of header
+    #main{:role => "main"}
+      = yield
+    %footer
+      / Some sort of footer?
