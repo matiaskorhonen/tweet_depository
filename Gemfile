@@ -2,8 +2,10 @@ source "https://rubygems.org"
 
 gem "rails", "3.2.7"
 
+gem "foreman"
 gem "haml", "~> 3.2.0.beta.1"
 gem "haml-rails", "~> 0.3.4"
+gem "omniauth-twitter", "~> 0.0.12"
 gem "simple_form", "~> 2.0.2"
 gem "pry-rails"
 gem "validates_lengths_from_database", "~> 0.2.0"
