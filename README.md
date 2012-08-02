@@ -15,6 +15,7 @@ Define the callback URL as: `http://depository.rails.fi:3000/auth/twitter/callba
 
 ```
 PORT=3000
+RACK_ENV=development
 TWITTER_KEY="YOUR_KEY"
 TWITTER_SECRET="YOUR_SECRET"
 ```
