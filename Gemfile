@@ -10,6 +10,7 @@ gem "simple_form", "~> 2.0.2"
 gem "pry-rails"
 gem "validates_lengths_from_database", "~> 0.2.0"
 gem "thin", "~> 1.4.1"
+gem "twitter", "~> 3.4.1"
 
 group :development do
   gem "heroku"

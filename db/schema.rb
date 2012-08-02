@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120802134340) do
+ActiveRecord::Schema.define(:version => 20120802141803) do
 
   create_table "users", :force => true do |t|
     t.string   "provider"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120802134340) do
     t.text     "raw_auth_hash"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.text     "credentials"
   end
 
   add_index "users", ["name"], :name => "index_users_on_name"
