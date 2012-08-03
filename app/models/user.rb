@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   serialize :raw_auth_hash
   serialize :credentials
 
-  has_many :statuses
+  has_many :statuses, dependent: :destroy
 
   def self.from_omniauth(auth)
     user = where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)

@@ -3,6 +3,8 @@ class Status < ActiveRecord::Base
 
   belongs_to :user
 
+  default_scope order("tweeted_at DESC")
+
   def self.create_from_hash(hash = {}, user_id = nil)
     unless user_id
       user = User.where(name: hash[:user][:screen_name]).select(:id).first
@@ -26,7 +28,6 @@ class Status < ActiveRecord::Base
   def self.initial_import_for_user(user_id)
     @max_id = nil
     @current_user = User.find(user_id)
-    latest =
     loop do
       options = {
         count: 200,
@@ -35,10 +36,9 @@ class Status < ActiveRecord::Base
         contributor_details: true,
         include_entities: true
       }
-      options = if @max_id.present?
-        {count: 200, max_id: @max_id}
-      else
-        {count: 200}
+
+      if @max_id.present?
+        options[:max_id] = @max_id
       end
 
       statuses = self.statuses_for_user(@current_user, options)
