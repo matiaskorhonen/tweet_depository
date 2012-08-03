@@ -1,0 +1,14 @@
+%h1 Tweets
+
+- if @statuses.any?
+  %ul
+    = list_of @statuses do |status|
+      %blockquote= "#{status.text}"
+      tweeted
+      %time{ datetime: status.tweeted_at.iso8601 }
+        = time_ago_in_words(status.tweeted_at)
+        ago
+      from
+      = status.source.html_safe
+- else
+  %p No Tweets have been imported yet.
