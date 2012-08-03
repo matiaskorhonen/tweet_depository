@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   serialize :raw_auth_hash
   serialize :credentials
 
+  has_many :statuses
+
   def self.from_omniauth(auth)
     user = where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
     if user
@@ -22,8 +24,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def twitter_client
-    @twitter_client ||= begin
+  def client
+    @client ||= begin
       Twitter.configure do |config|
         config.consumer_key = ENV["TWITTER_KEY"]
         config.consumer_secret = ENV["TWITTER_SECRET"]

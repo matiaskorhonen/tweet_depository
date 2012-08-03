@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120802141803) do
+ActiveRecord::Schema.define(:version => 20120803074329) do
+
+  create_table "statuses", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "twitter_id"
+    t.text     "text"
+    t.string   "source"
+    t.string   "in_reply_to_user_id"
+    t.string   "in_reply_to_screen_name"
+    t.datetime "tweeted_at"
+    t.text     "raw_hash"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "statuses", ["in_reply_to_screen_name"], :name => "index_statuses_on_in_reply_to_screen_name"
+  add_index "statuses", ["in_reply_to_user_id"], :name => "index_statuses_on_in_reply_to_user_id"
+  add_index "statuses", ["twitter_id"], :name => "index_statuses_on_twitter_id", :unique => true
+  add_index "statuses", ["user_id"], :name => "index_statuses_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "provider"
