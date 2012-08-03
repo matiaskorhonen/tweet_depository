@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     user = where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
     if user
-      user.raw_auth_hash = auth["extra"]["raw_info"]
+      user.raw_auth_hash = auth["extra"]["raw_info"].to_hash
       user.credentials = auth["credentials"]
       user.save
     end
