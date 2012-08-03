@@ -1,9 +1,22 @@
+require "uri"
+
 class Status < ActiveRecord::Base
   serialize :raw_hash
 
   belongs_to :user
 
   default_scope order("tweeted_at DESC")
+
+  def twitter_url
+    URI::HTTPS.build({
+      host: "twitter.com",
+      path: "/#{self.screen_name}/status/#{self.twitter_id}"
+    }).to_s
+  end
+
+  def screen_name
+    self.raw_hash[:user][:screen_name]
+  end
 
   def self.create_from_hash(hash = {}, user_id = nil)
     unless user_id

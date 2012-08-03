@@ -1,0 +1,8 @@
+%blockquote= "#{status.text}"
+tweeted
+= link_to status.twitter_url do
+  %time{ datetime: status.tweeted_at.iso8601 }
+    = time_ago_in_words(status.tweeted_at)
+    ago
+from
+= status.source.html_safe
