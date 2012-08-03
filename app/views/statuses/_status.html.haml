@@ -1,5 +1,9 @@
-%blockquote= format_status_text(status)
-tweeted
+%blockquote{ class: (status.is_retweet? ? "retweet" : "tweet") }
+  = format_status_text(status)
+- if status.is_retweet?
+  retweeted @#{status.raw_hash[:retweeted_status][:user][:screen_name]}
+- else
+  tweeted
 = link_to status.twitter_url do
   %time{ datetime: status.tweeted_at.iso8601 }
     = time_ago_in_words(status.tweeted_at)

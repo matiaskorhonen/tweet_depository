@@ -30,6 +30,7 @@ class Status < ActiveRecord::Base
       status.tweeted_at              = hash[:created_at]
       status.in_reply_to_screen_name = hash[:in_reply_to_screen_name]
       status.in_reply_to_user_id     = hash[:in_reply_to_user_id]
+      status.is_retweet              = !!hash[:retweeted_status]
       status.raw_hash                = hash
     end
   end
