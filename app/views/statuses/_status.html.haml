@@ -1,4 +1,4 @@
-%blockquote= "#{status.text}"
+%blockquote= format_status_text(status)
 tweeted
 = link_to status.twitter_url do
   %time{ datetime: status.tweeted_at.iso8601 }
