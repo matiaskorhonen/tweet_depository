@@ -3,6 +3,6 @@
 - if current_user
   Signed in as
   = current_user.name
-  = link_to "View statuses", statuses_path
+  = link_to "View statuses", statuses_path(limit: 100)
 - else
   = link_to "Sign in with Twitter", "/auth/twitter"
