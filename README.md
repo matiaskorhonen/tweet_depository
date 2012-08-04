@@ -23,3 +23,8 @@ TWITTER_SECRET="YOUR_SECRET"
 ```
 
 Once this is done, run: `foreman start`, and open <http://depository.rails.fi:3000/>
+
+Rails Console
+-------------
+
+You should use `foreman run rails c` to start the console session so that the Twitter API keys get set.
