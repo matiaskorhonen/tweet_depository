@@ -1,12 +1,18 @@
 %blockquote{ class: (status.is_retweet? ? "retweet" : "tweet") }
+
+  - if status.is_retweet?
+    %span.rt-icon &#9850;
+
   = format_status_text(status)
-- if status.is_retweet?
-  retweeted @#{status.raw_hash[:retweeted_status][:user][:screen_name]}
-- else
-  tweeted
-= link_to status.twitter_url do
-  %time{ datetime: status.tweeted_at.iso8601 }
-    = time_ago_in_words(status.tweeted_at)
-    ago
-from
-= status.source.html_safe
+
+%small
+  - if status.is_retweet?
+    Retweeted @#{status.raw_hash[:retweeted_status][:user][:screen_name]}
+  - else
+    Tweeted
+  = link_to status.twitter_url do
+    %time{ datetime: status.tweeted_at.iso8601 }
+      = time_ago_in_words(status.tweeted_at)
+      ago
+  via
+  = status.source.html_safe
