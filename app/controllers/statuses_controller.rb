@@ -3,5 +3,6 @@ class StatusesController < ApplicationController
 
   def index
     @statuses = current_user.statuses
+    @statuses = @statuses.limit(params[:limit].to_i) if params[:limit]
   end
 end
