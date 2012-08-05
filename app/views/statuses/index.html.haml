@@ -1,16 +1,19 @@
 %header
-  .profile
-    .avatar
-      %img{src: 'avatar.png', alt: ''}
-    %h1 Joni Korpi
-    %small @jonikorpi
-    
+
   .search
     %form
-      %input{type: 'search'}
+      %input{type: 'search', results: '5'}
+      %input{type: 'submit'}
+  
+  .profile  
+    %a.avatar{href: 'http://twitter.com/vesan2000'}
+      = image_tag '/placeholder.jpg'
+    %h1 Vesa Vänskä
+    %small @vesan2000
   
 
 %section{:role => "main"}
+  
   - if @statuses.any?
     %ul
       = list_of @statuses do |status|
@@ -23,88 +26,80 @@
 %footer
   .footer-icons &#9670; &#9670; &#9670;
 
-%nav
-  %ul
+%nav#navigation
+  %ul.timeline
     %li.year
-      %a{href: '#'} Recent
-    %li.year
-      %a{href: '#'} 2012
+      %h2 2012
       %ul
-        %li
-          %a{href: '#'} January
-        %li
-          %a{href: '#'} February
-        %li
-          %a{href: '#'} March
-        %li
-          %a{href: '#'} April
-        %li
-          %a{href: '#'} May
-        %li
-          %a{href: '#'} June
-        %li
-          %a{href: '#'} July
+        %li.active
+          %a{href: '/'} Recent
         %li
           %a{href: '#'} August
         %li
-          %a{href: '#'} September
-        %li
-          %a{href: '#'} October
-        %li
-          %a{href: '#'} November
-        %li
-          %a{href: '#'} December
-    %li.year
-      %a{href: '#'} 2011
-      %ul
-        %li
-          %a{href: '#'} January
-        %li
-          %a{href: '#'} February
-        %li
-          %a{href: '#'} March
-        %li
-          %a{href: '#'} April
-        %li
-          %a{href: '#'} May
+          %a{href: '#'} July
         %li
           %a{href: '#'} June
         %li
-          %a{href: '#'} July
-        %li
-          %a{href: '#'} August
-        %li
-          %a{href: '#'} September
-        %li
-          %a{href: '#'} October
-        %li
-          %a{href: '#'} November
-        %li
-          %a{href: '#'} December
-    %li.year
-      %a{href: '#'} 2010
-      %ul
-        %li
-          %a{href: '#'} January
-        %li
-          %a{href: '#'} February
-        %li
-          %a{href: '#'} March
+          %a{href: '#'} May
         %li
           %a{href: '#'} April
         %li
-          %a{href: '#'} May
+          %a{href: '#'} March
         %li
-          %a{href: '#'} June
+          %a{href: '#'} February
         %li
-          %a{href: '#'} July
+          %a{href: '#'} January
+    %li.year
+      %h2 2011
+      %ul
         %li
-          %a{href: '#'} August
-        %li
-          %a{href: '#'} September
-        %li
-          %a{href: '#'} October
+          %a{href: '#'} December
         %li
           %a{href: '#'} November
         %li
+          %a{href: '#'} October
+        %li
+          %a{href: '#'} September
+        %li
+          %a{href: '#'} August
+        %li
+          %a{href: '#'} July
+        %li
+          %a{href: '#'} June
+        %li
+          %a{href: '#'} May
+        %li
+          %a{href: '#'} April
+        %li
+          %a{href: '#'} March
+        %li
+          %a{href: '#'} February
+        %li
+          %a{href: '#'} January
+    %li.year
+      %h2 2010
+      %ul
+        %li
           %a{href: '#'} December
+        %li
+          %a{href: '#'} November
+        %li
+          %a{href: '#'} October
+        %li
+          %a{href: '#'} September
+        %li
+          %a{href: '#'} August
+        %li
+          %a{href: '#'} July
+        %li
+          %a{href: '#'} June
+        %li
+          %a{href: '#'} May
+        %li
+          %a{href: '#'} April
+        %li
+          %a{href: '#'} March
+        %li
+          %a{href: '#'} February
+        %li
+          %a{href: '#'} January

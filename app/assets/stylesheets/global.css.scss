@@ -1,31 +1,31 @@
+@charset 'UTF-8';
+
+@import 'compass';
 @import 'reset';
 
-$font-size: 22;
-$line-height: 28;
+$background:  white;
+$highlight:   rgba(0,0,0, 0.056);
+$border:      rgba(0,0,0, 0.146);
 
-$background:  hsl(0, 0%, 100%);
-$highlight:   hsl(0, 0%, 91%);
+$aside:       rgba(0,0,0, 0.382);
+$body:        rgba(0,0,0, 0.854);
+$emphasis:    rgba(0,0,0, 0.91);
 
-$aside:       hsl(0, 0%, 61.8%);
-$body:        hsl(0, 0%, 9%);
-$emphasis:    hsl(0, 0%, 5.6%);
-
-$link:        hsl(194, 86%, 56%);
+$link:        hsl(196, 100%, 35%);
 
 
 /*  --------------------
     Typography & colours
     --------------------  */
+    
+$font-size: 14;
+$line-height: 21;
 
 body {
-  font-size: em($font-size);
+  font-size: em($font-size, 16);
   line-height: lines(1);
-  font-family: Georgia, serif;
-  color: $body;
-}
-
-header, small {
   font-family: 'Helvetica Neue', sans-serif;
+  color: $body;
 }
 
 a {
@@ -34,21 +34,58 @@ a {
 }
 
   a:hover {
-    
+    border-bottom: 1px solid $link;
   }
   
   a:active {
-    
+    color: $aside;
+    border-bottom-color: $aside;
   }
 
 h1 {
   color: $emphasis;
+  font-size: em(17);
+  line-height: em(20, 17);
 }
 
 small {
+  font-size: em(12);
+  line-height: em($line-height, 12);
   color: $aside;
   
   a {
+    color: $aside;
+  }
+  
+  a:hover {
+    color: $link;
+  }
+  
+  a:active {
+    color: $aside
+  }
+  
+}
+
+nav {
+  
+  a {
+    color: $body;
+  }
+  
+  a:hover {
+    color: $link;
+  }
+  
+  a:active {
+    color: $aside;
+  }
+
+  .active a {
+    font-weight: bold;
+  }
+  
+  .year {
     color: $aside;
   }
   
@@ -68,21 +105,209 @@ article {
 }
 
   header {
-    
+    position: relative;
   }
-  
-  section {
     
-  }
-  
-    li {
-      margin-bottom: lines(2);
+    .profile {
+      padding: lines(1.5) lines(0.5) lines(1);
+      @include clearfix;
+      
     }
     
-  footer {
+      .avatar {
+        position: relative;
+        width: lines(2);
+        height: lines(2);
+        float: left;
+        margin-right: lines(0.25);
+        overflow: hidden;
+        background: $background;
+        
+        img {
+          width: 100%;
+          display: block;
+          @include border-radius(em(5));
+        }
+        
+      }
     
+    .search {
+      padding: lines(0.5);
+      background: $highlight;
+      
+      input[type=search] {
+        width: 100%;
+        @include box-sizing(border-box);
+        font-size: large;
+      }
+      
+      input[type=submit] {
+        display: none;
+      }
+      
+    }
+  
+  section {
+    padding: 0 lines(0.5);
+    
+    li {
+      margin-bottom: lines(1);
+      list-style: none;
+      display: block;
+    }
+    
+    .rt-icon {
+      background: $aside;
+      color: $background;
+      display: inline-block;
+      font-size: em(10);
+      line-height: em(14, 10);
+      vertical-align: middle;
+      width: em(10, 10);
+      height: em(10, 10);
+      padding: em(1, 10) em(3, 10) em(5, 10);
+      text-align: center;
+      position: relative;
+      top: em(-2, 10);
+      @include border-radius(em(3, 10));
+    }
+    
+  }
+    
+  footer {
+    display: none;
   }
   
   nav {
+    background: $highlight;
+    margin-top: lines(1.5);
+    overflow: auto;
+    
+    li {
+      list-style: none;
+      display: block;
+    }
+    
+    > ul {
+      display: block;
+      @include clearfix;
+      padding: lines(1.5) lines(1) lines(1);
+      padding-left: 0;
+      width: lines( (12+1)*10 );
+      margin: 0 auto;
+    }
+    
+    > ul > li {
+      width: lines(12);
+      padding-left: lines(1);
+      float: left;
+      
+      > h2 {
+        font-size: em(19, 14);
+        line-height: em($line-height, 19);
+      }
+      
+      &:first-child > ul {
+        
+      }
+      
+      > ul {
+        @include column-count(2);
+        @include column-gap(lines(1));
+        margin-top: lines(1);
+        
+        > li {
+           padding-bottom: lines(1, 19);
+           font-size: em(19, 14);
+           line-height: em($line-height, 19);
+        }
+        
+      }
+      
+    }
+    
+    ul > li li {
+      
+    }
     
   }
+  
+  #login {
+    position: absolute;
+    left: 0; top: 50%;
+    width: 100%;
+    text-align: center;
+    margin-top: lines(-1);
+  }
+  
+
+/*  -------------
+    Mobile layout
+    Tweaks
+    -------------  */
+
+@media screen and (min-width: 30em) {
+  
+  header, section {
+    max-width: lines(24);
+    margin: 0 auto;
+    @include box-sizing(border-box);
+  }
+  
+  .profile, section {
+    padding-left: lines(1);
+    padding-right: lines(1);
+  }
+  
+  .profile {
+    margin-right: lines(10);
+  }
+  
+  .search {
+    position: absolute;
+    right: lines(1); top: lines(1.5);
+    height: lines(2);
+    width: lines(8);
+    @include box-sizing(border-box);
+    @include border-radius(em(5));
+  }
+
+}
+
+
+/*  -------------
+    Tablet layout
+    -------------  */
+    
+@media screen and (min-width: 37.5em) {
+  
+  .profile {
+    padding-top: lines(2);
+  }
+  
+  .search {
+    top: lines(2);
+  }
+  
+  nav {
+    margin-top: lines(2);
+  }
+  
+  .timeline {
+    padding: lines(2);
+  }
+  
+}
+
+
+/*  -----------------
+    Widescreen tweaks
+    -----------------  */
+    
+@media screen and (min-width: 150em) {
+  
+  body {
+    font-size: em(16, 16);
+  }
+  
+}
