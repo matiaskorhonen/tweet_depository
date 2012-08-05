@@ -1,6 +1,9 @@
-- if current_user
-  Signed in as
-  = current_user.name
-  = link_to "View statuses", statuses_path(limit: 100)
-- else
-  = link_to "Sign in with Twitter", "/auth/twitter"
+#login
+  - if current_user
+    You are
+    = '@' + current_user.name + '.'
+    <br/>
+    = link_to "Your tweets", statuses_path(limit: 100)
+  - else
+    Hey there.<br/>
+    = link_to "Sign in via Twitter", "/auth/twitter"
