@@ -11,5 +11,14 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
-//= require_tree .
+// require jquery_ujs
+// require_tree .
+
+$(function() {
+
+  var years = $('.year').length;
+  var timelineWidth = ((12+2) * 20 * years) / 14;
+  
+  $('.timeline').css('width', timelineWidth+'em');
+  
+});
