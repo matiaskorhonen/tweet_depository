@@ -1,9 +1,52 @@
-%header
+%nav#navigation
+  .wrapper
+    .timeline
+      %form
+        %select{name: 'month'}
+          %option Recent
+          %optgroup{label: '2012'}
+            %option{value: ''} August
+            %option{value: ''} July
+            %option{value: ''} June
+            %option{value: ''} May
+            %option{value: ''} April
+            %option{value: ''} March
+            %option{value: ''} February
+            %option{value: ''} January
+          %optgroup{label: '2011'}
+            %option{value: ''} December
+            %option{value: ''} November
+            %option{value: ''} October
+            %option{value: ''} September
+            %option{value: ''} August
+            %option{value: ''} July
+            %option{value: ''} June
+            %option{value: ''} May
+            %option{value: ''} April
+            %option{value: ''} March
+            %option{value: ''} February
+            %option{value: ''} January
+          %optgroup{label: '2010'}
+            %option{value: ''} December
+            %option{value: ''} November
+            %option{value: ''} October
+            %option{value: ''} September
+            %option{value: ''} August
+            %option{value: ''} July
+            %option{value: ''} June
+            %option{value: ''} May
+            %option{value: ''} April
+            %option{value: ''} March
+            %option{value: ''} February
+            %option{value: ''} January
+        %input{type: 'submit'}
+  
+    .search
+      %form
+        %input{type: 'search', results: '5', name: 'search'}
+        %input{type: 'submit'}
 
-  .search
-    %form
-      %input{type: 'search', results: '5'}
-      %input{type: 'submit'}
+%header
   
   .profile  
     %a.avatar{href: 'http://twitter.com/vesan2000'}
@@ -25,81 +68,3 @@
 
 %footer
   .footer-icons &#9670; &#9670; &#9670;
-
-%nav#navigation
-  %ul.timeline
-    %li.year
-      %h2 2012
-      %ul
-        %li.active
-          %a{href: '/'} Recent
-        %li
-          %a{href: '#'} August
-        %li
-          %a{href: '#'} July
-        %li
-          %a{href: '#'} June
-        %li
-          %a{href: '#'} May
-        %li
-          %a{href: '#'} April
-        %li
-          %a{href: '#'} March
-        %li
-          %a{href: '#'} February
-        %li
-          %a{href: '#'} January
-    %li.year
-      %h2 2011
-      %ul
-        %li
-          %a{href: '#'} December
-        %li
-          %a{href: '#'} November
-        %li
-          %a{href: '#'} October
-        %li
-          %a{href: '#'} September
-        %li
-          %a{href: '#'} August
-        %li
-          %a{href: '#'} July
-        %li
-          %a{href: '#'} June
-        %li
-          %a{href: '#'} May
-        %li
-          %a{href: '#'} April
-        %li
-          %a{href: '#'} March
-        %li
-          %a{href: '#'} February
-        %li
-          %a{href: '#'} January
-    %li.year
-      %h2 2010
-      %ul
-        %li
-          %a{href: '#'} December
-        %li
-          %a{href: '#'} November
-        %li
-          %a{href: '#'} October
-        %li
-          %a{href: '#'} September
-        %li
-          %a{href: '#'} August
-        %li
-          %a{href: '#'} July
-        %li
-          %a{href: '#'} June
-        %li
-          %a{href: '#'} May
-        %li
-          %a{href: '#'} April
-        %li
-          %a{href: '#'} March
-        %li
-          %a{href: '#'} February
-        %li
-          %a{href: '#'} January

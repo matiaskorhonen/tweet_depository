@@ -16,9 +16,8 @@
 
 $(function() {
 
-  var years = $('.year').length;
-  var timelineWidth = ((12+2) * 20 * years) / 14;
-  
-  $('.timeline').css('width', timelineWidth+'em');
+  $('.timeline select').on('change', function(){
+    $(this).parents('form').submit();
+  });
   
 });

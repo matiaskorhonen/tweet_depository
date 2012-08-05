@@ -104,6 +104,44 @@ article {
   
 }
 
+  nav {
+    background: $highlight;
+    @include clearfix;
+    
+    .timeline, .search,
+    select, input[type=search] {
+      @include box-sizing(border-box);
+    }
+    
+    input[type=submit] {
+      display: none;
+    }
+  
+    .timeline {
+      width: 50%;
+      float: left;
+      padding: lines(0.5) lines(0.25) lines(0.5) lines(0.5);
+      
+      select {
+        width: 100%;
+        font-size: large;        
+      }
+      
+    }
+    
+    .search {
+      width: 50%;
+      float: right;
+      padding: lines(0.5) lines(0.5) lines(0.5) lines(0.25);
+      input[type=search] {
+        width: 100%;
+        font-size: large;
+      }
+      
+    }
+  }
+  
+
   header {
     position: relative;
   }
@@ -119,7 +157,7 @@ article {
         width: lines(2);
         height: lines(2);
         float: left;
-        margin-right: lines(0.25);
+        margin-right: lines(0.5);
         overflow: hidden;
         background: $background;
         
@@ -130,22 +168,6 @@ article {
         }
         
       }
-    
-    .search {
-      padding: lines(0.5);
-      background: $highlight;
-      
-      input[type=search] {
-        width: 100%;
-        @include box-sizing(border-box);
-        font-size: large;
-      }
-      
-      input[type=submit] {
-        display: none;
-      }
-      
-    }
   
   section {
     padding: 0 lines(0.5);
@@ -175,61 +197,9 @@ article {
   }
     
   footer {
-    display: none;
-  }
-  
-  nav {
-    background: $highlight;
-    margin-top: lines(1.5);
-    overflow: auto;
-    
-    li {
-      list-style: none;
-      display: block;
-    }
-    
-    > ul {
-      display: block;
-      @include clearfix;
-      padding: lines(1.5) lines(1) lines(1);
-      padding-left: 0;
-      width: lines( (12+1)*10 );
-      margin: 0 auto;
-    }
-    
-    > ul > li {
-      width: lines(12);
-      padding-left: lines(1);
-      float: left;
-      
-      > h2 {
-        font-size: em(19, 14);
-        line-height: em($line-height, 19);
-      }
-      
-      &:first-child > ul {
-        
-      }
-      
-      > ul {
-        @include column-count(2);
-        @include column-gap(lines(1));
-        margin-top: lines(1);
-        
-        > li {
-           padding-bottom: lines(1, 19);
-           font-size: em(19, 14);
-           line-height: em($line-height, 19);
-        }
-        
-      }
-      
-    }
-    
-    ul > li li {
-      
-    }
-    
+    text-align: center;
+    margin-top: lines(1);
+    padding-bottom: lines(2);
   }
   
   #login {
@@ -248,10 +218,24 @@ article {
 
 @media screen and (min-width: 30em) {
   
-  header, section {
+  header, section, nav .wrapper {
     max-width: lines(24);
     margin: 0 auto;
     @include box-sizing(border-box);
+  }
+  
+  nav {
+    
+    .search {
+      padding-left: lines(0.5);
+      padding-right: lines(1);
+    }
+    
+    .timeline {
+      padding-right: lines(0.5);
+      padding-left: lines(1);
+    }
+    
   }
   
   .profile, section {
@@ -261,15 +245,6 @@ article {
   
   .profile {
     margin-right: lines(10);
-  }
-  
-  .search {
-    position: absolute;
-    right: lines(1); top: lines(1.5);
-    height: lines(2);
-    width: lines(8);
-    @include box-sizing(border-box);
-    @include border-radius(em(5));
   }
 
 }
@@ -283,18 +258,6 @@ article {
   
   .profile {
     padding-top: lines(2);
-  }
-  
-  .search {
-    top: lines(2);
-  }
-  
-  nav {
-    margin-top: lines(2);
-  }
-  
-  .timeline {
-    padding: lines(2);
   }
   
 }
