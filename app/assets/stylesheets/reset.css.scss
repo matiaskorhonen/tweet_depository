@@ -1,5 +1,7 @@
-$font-size: 16;
-$line-height: 24;
+@charset 'UTF-8';
+
+$font-size: 22;
+$line-height: 28;
 
 @function em($pixels, $context-font-size: $font-size) {
  @return ($pixels / $context-font-size) * 1em; 
