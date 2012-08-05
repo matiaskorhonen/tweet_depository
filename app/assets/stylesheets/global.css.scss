@@ -182,16 +182,15 @@ article {
       background: $aside;
       color: $background;
       display: inline-block;
-      font-size: em(10);
-      line-height: em(14, 10);
+      font-size: em(12);
+      line-height: em(10, 12);
       vertical-align: middle;
-      width: em(10, 10);
-      height: em(10, 10);
-      padding: em(1, 10) em(3, 10) em(5, 10);
+      height: em(10, 12);
+      padding: em(3, 12) em(2, 12) em(3, 12);
       text-align: center;
       position: relative;
-      top: em(-2, 10);
-      @include border-radius(em(3, 10));
+      top: em(-1, 12);
+      @include border-radius(em(3, 12));
     }
     
   }
