@@ -161,6 +161,10 @@ article {
         overflow: hidden;
         background: $background;
         
+        &:hover {
+          border: 0;
+        }
+        
         img {
           width: 100%;
           display: block;
