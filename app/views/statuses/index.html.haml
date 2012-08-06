@@ -48,11 +48,11 @@
 
 %header
   
-  .profile  
-    %a.avatar{href: 'http://twitter.com/vesan2000'}
-      = image_tag '/placeholder.jpg'
-    %h1 Vesa Vänskä
-    %small @vesan2000
+  .profile
+    = link_to current_user.twitter_url, class: "avatar" do
+      = image_tag current_user.avatar_url, alt: current_user.name
+    %h1= current_user.display_name
+    %small= "@#{current_user.name}"
   
 
 %section{:role => "main"}

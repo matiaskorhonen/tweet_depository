@@ -4,8 +4,19 @@ class User < ActiveRecord::Base
 
   has_many :statuses, dependent: :destroy
 
+  def twitter_url
+    URI::HTTPS.build({
+      host: "twitter.com",
+      path: "/#{self.name}"
+    }).to_s
+  end
+
   def avatar_url
     self.raw_auth_hash["profile_image_url_https"]
+  end
+
+  def display_name
+    self.raw_auth_hash["name"]
   end
 
   def self.from_omniauth(auth)
