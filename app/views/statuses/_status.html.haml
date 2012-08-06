@@ -1,7 +1,9 @@
 %blockquote{ class: (status.is_retweet? ? "retweet" : "tweet") }
 
   - if status.is_retweet?
-    %span.rt-icon &#9850;
+    %span.icon.rt-icon &#9850;
+  - if status.is_reply?
+    %span.icon.reply-icon &#8618;
 
   = format_status_text(status)
 

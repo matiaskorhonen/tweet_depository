@@ -182,7 +182,7 @@ article {
       display: block;
     }
     
-    .rt-icon {
+    .icon {
       background: $aside;
       color: $background;
       display: inline-block;
@@ -195,6 +195,16 @@ article {
       position: relative;
       top: em(-1, 12);
       @include border-radius(em(3, 12));
+    }
+    
+    .rt-icon {
+      
+    }
+    
+    .reply-icon {
+      @include rotate(180deg);
+      padding-top: em(4, 12);
+      padding-bottom: em(2, 12);
     }
     
   }
