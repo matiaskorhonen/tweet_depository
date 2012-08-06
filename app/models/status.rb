@@ -18,6 +18,22 @@ class Status < ActiveRecord::Base
     self.raw_hash[:user][:screen_name]
   end
 
+  def is_reply?
+    self.raw_hash[:in_reply_to_status_id].present? &&
+    self.raw_hash[:in_reply_to_screen_name].present?
+  end
+
+  def in_reply_to_screen_name
+    self.raw_hash[:in_reply_to_screen_name]
+  end
+
+  def in_reply_to_url
+    URI::HTTPS.build({
+      host: "twitter.com",
+      path: "/#{raw_hash[:in_reply_to_screen_name]}/status/#{raw_hash[:in_reply_to_status_id]}"
+    }).to_s
+  end
+
   def self.create_from_hash(hash = {}, user_id = nil)
     unless user_id
       user = User.where(name: hash[:user][:screen_name]).select(:id).first
