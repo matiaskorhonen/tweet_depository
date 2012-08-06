@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
 
   has_many :statuses, dependent: :destroy
 
+  def avatar_url
+    self.raw_auth_hash["profile_image_url_https"]
+  end
+
   def self.from_omniauth(auth)
     user = where(auth.slice("provider", "uid")).first || create_from_omniauth(auth)
     if user
