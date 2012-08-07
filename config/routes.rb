@@ -1,5 +1,4 @@
 TweetDepository::Application.routes.draw do
-  root to: "pages#home"
+  root to: "statuses#index"
   match "auth/:provider/callback", to: "sessions#create"
-  resources :statuses
 end
