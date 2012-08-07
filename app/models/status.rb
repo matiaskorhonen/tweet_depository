@@ -15,7 +15,18 @@ class Status < ActiveRecord::Base
   end
 
   def screen_name
-    self.raw_hash[:user][:screen_name]
+    if raw_hash[:retweeted_status].present?
+      self.raw_hash[:retweeted_status][:user][:screen_name]
+    else
+      self.raw_hash[:user][:screen_name]
+    end
+  end
+
+  def twitter_user_url
+    URI::HTTPS.build({
+      host: "twitter.com",
+      path: "/#{self.screen_name}"
+    }).to_s
   end
 
   def is_reply?

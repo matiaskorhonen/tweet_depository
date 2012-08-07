@@ -9,7 +9,8 @@
 
 %small
   - if status.is_retweet?
-    Retweeted @#{status.raw_hash[:retweeted_status][:user][:screen_name]}
+    Retweeted
+    = link_to "@#{status.screen_name}", status.twitter_user_url
   - else
     Tweeted
   = link_to status.twitter_url do
