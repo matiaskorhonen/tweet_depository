@@ -5,7 +5,7 @@ class Status < ActiveRecord::Base
 
   belongs_to :user
 
-  default_scope order("tweeted_at DESC")
+  default_scope order("twitter_id DESC")
 
   def twitter_url
     URI::HTTPS.build({
@@ -50,7 +50,7 @@ class Status < ActiveRecord::Base
       user = User.where(name: hash[:user][:screen_name]).select(:id).first
       user_id = user.id
     end
-    self.find_or_create_by_twitter_id(hash[:id_str]) do |status|
+    self.find_or_create_by_twitter_id(hash[:id]) do |status|
       status.user_id                 = user_id
       status.text                    = hash[:text]
       status.source                  = hash[:source]

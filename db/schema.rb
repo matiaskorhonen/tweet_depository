@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803130929) do
+ActiveRecord::Schema.define(:version => 20120808111104) do
 
   create_table "statuses", :force => true do |t|
     t.integer  "user_id"
-    t.string   "twitter_id"
+    t.integer  "twitter_id",              :limit => 8
     t.text     "text"
     t.string   "source"
     t.string   "in_reply_to_user_id"
