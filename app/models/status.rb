@@ -5,12 +5,12 @@ class Status < ActiveRecord::Base
 
   belongs_to :user
 
-  default_scope order("twitter_id DESC")
+  default_scope order("sid DESC")
 
   def twitter_url
     URI::HTTPS.build({
       host: "twitter.com",
-      path: "/#{self.screen_name}/status/#{self.twitter_id}"
+      path: "/#{self.screen_name}/status/#{self.sid}"
     }).to_s
   end
 
@@ -50,7 +50,7 @@ class Status < ActiveRecord::Base
       user = User.where(name: hash[:user][:screen_name]).select(:id).first
       user_id = user.id
     end
-    self.find_or_create_by_twitter_id(hash[:id]) do |status|
+    self.find_or_create_by_sid(hash[:id]) do |status|
       status.user_id                 = user_id
       status.text                    = hash[:text]
       status.source                  = hash[:source]
