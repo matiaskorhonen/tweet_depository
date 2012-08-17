@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require "uri"
 
 class Status < ActiveRecord::Base
@@ -91,6 +92,27 @@ class Status < ActiveRecord::Base
       end
 
       @max_id = statuses.last[:id].to_s
+    end
+  end
+
+  # FIXME: This is still pretty stupid and assumes that there won't be > 200
+  # new tweets…
+  def self.import_latest_for_user(user_id)
+    current_user = User.find(user_id)
+    if current_user.statuses.any?
+      options = {
+        count: 200,
+        include_rts: true,
+        exclude_replies: false,
+        contributor_details: true,
+        include_entities: true,
+        since_id: current_user.statuses.last.sid
+      }
+      statuses = self.statuses_for_user(current_user, options)
+
+      statuses.each do |status|
+        self.create_from_hash(status.to_hash, user_id)
+      end
     end
   end
 end
