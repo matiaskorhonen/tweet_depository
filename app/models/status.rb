@@ -46,6 +46,14 @@ class Status < ActiveRecord::Base
     }).to_s
   end
 
+  def self.oldest
+    self.order("sid DESC").last
+  end
+
+  def self.newest
+    self.order("sid DESC").first
+  end
+
   def self.create_from_hash(hash = {}, user_id = nil)
     unless user_id
       user = User.where(name: hash[:user][:screen_name]).select(:id).first

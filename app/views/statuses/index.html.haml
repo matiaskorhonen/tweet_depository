@@ -1,44 +1,13 @@
 %nav#navigation
   .wrapper
     .timeline
-      %form          
-        %select{name: 'month'}
+      %form
+        %select{ name: "month" }
           %option Recent
-          %optgroup{label: '2012'}
-            %option{value: ''} August
-            %option{value: ''} July
-            %option{value: ''} June
-            %option{value: ''} May
-            %option{value: ''} April
-            %option{value: ''} March
-            %option{value: ''} February
-            %option{value: ''} January
-          %optgroup{label: '2011'}
-            %option{value: ''} December
-            %option{value: ''} November
-            %option{value: ''} October
-            %option{value: ''} September
-            %option{value: ''} August
-            %option{value: ''} July
-            %option{value: ''} June
-            %option{value: ''} May
-            %option{value: ''} April
-            %option{value: ''} March
-            %option{value: ''} February
-            %option{value: ''} January
-          %optgroup{label: '2010'}
-            %option{value: ''} December
-            %option{value: ''} November
-            %option{value: ''} October
-            %option{value: ''} September
-            %option{value: ''} August
-            %option{value: ''} July
-            %option{value: ''} June
-            %option{value: ''} May
-            %option{value: ''} April
-            %option{value: ''} March
-            %option{value: ''} February
-            %option{value: ''} January
+          - tweet_dates(@oldest, @newest).each do |year, dates|
+            %optgroup{ label: year }
+              - dates.each do |date|
+                %option{ value: date.strftime("%Y-%m"), selected: date == @date }= date.strftime("%B")
         %input{type: 'submit'}
 
     .search
