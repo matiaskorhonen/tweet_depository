@@ -5,7 +5,7 @@
 
 $background:  white;
 $highlight:   rgba(0,0,0, 0.056);
-$border:      rgba(0,0,0, 0.146);
+$border:      rgba(0,0,0, 0.091);
 
 $aside:       rgba(0,0,0, 0.382);
 $body:        rgba(0,0,0, 0.854);
@@ -108,17 +108,13 @@ article {
     background: $highlight;
     @include clearfix;
     
-    .timeline, .search,
-    select, input[type=search] {
+    .timeline, .search, .sign-out,
+    select, input {
       @include box-sizing(border-box);
-    }
-    
-    input[type=submit] {
-      display: none;
     }
   
     .timeline {
-      width: 50%;
+      width: 38%;
       float: left;
       padding: lines(0.5) lines(0.25) lines(0.5) lines(0.5);
       
@@ -127,16 +123,53 @@ article {
         font-size: large;        
       }
       
+      input[type=submit] {
+        display: none;
+      }
+      
     }
     
     .search {
-      width: 50%;
-      float: right;
-      padding: lines(0.5) lines(0.5) lines(0.5) lines(0.25);
+      width: 38%;
+      float: left;
+      padding: lines(0.5) lines(0.25) lines(0.5) lines(0.25);
+      
       input[type=search] {
         width: 100%;
         font-size: large;
       }
+      
+      input[type=submit] {
+        display: none;
+      }
+      
+    }
+    
+    .sign-out {
+      float: right;
+      width: 24%;
+      padding: lines(0.5) lines(0.5) lines(0.5) lines(0.25);
+      
+      a {
+        display: block;
+        text-align: center;
+        background: $highlight;
+        font-size: em(10);
+        line-height: em(19, 10);
+        padding-bottom: em(1, 10);
+        border: 1px solid $border;
+        @include border-radius(em(4, 10));
+      }
+      
+        a:hover {
+          background: $link;
+          color: $background;
+        }
+        
+        a:active {
+          background: $highlight;
+          color: $aside;
+        }
       
     }
   }
@@ -178,33 +211,17 @@ article {
     
     li {
       margin-bottom: lines(1);
+      border: 1px solid $border;
+      padding: em(13);
       list-style: none;
       display: block;
+      @include border-radius(em(5));
+      background: darken($background, 2.1%);
     }
     
-    .icon {
-      background: $aside;
-      color: $background;
-      display: inline-block;
-      font-size: em(12);
-      line-height: em(10, 12);
-      vertical-align: middle;
-      height: em(10, 12);
-      padding: em(3, 12) em(2, 12) em(3, 12);
-      text-align: center;
+    .ss-retweet:before {
       position: relative;
-      top: em(-1, 12);
-      @include border-radius(em(3, 12));
-    }
-    
-    .rt-icon {
-      
-    }
-    
-    .reply-icon {
-      @include rotate(180deg);
-      padding-top: em(4, 12);
-      padding-bottom: em(2, 12);
+      top: em(2);
     }
     
   }
@@ -239,14 +256,27 @@ article {
   
   nav {
     
-    .search {
-      padding-left: lines(0.5);
-      padding-right: lines(1);
-    }
-    
     .timeline {
       padding-right: lines(0.5);
       padding-left: lines(1);
+    }
+    
+    .search {
+      padding-left: lines(0.5);
+      padding-right: lines(0.5);
+    }
+    
+    .sign-out {
+      padding-left: lines(0.5);
+      padding-right: lines(1);
+      
+      a {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        line-height: em(20, 10);
+        padding: 0;
+      }
+      
     }
     
   }

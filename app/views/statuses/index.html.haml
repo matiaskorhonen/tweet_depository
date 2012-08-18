@@ -14,6 +14,9 @@
       %form
         %input{type: 'search', results: '5', name: 'search'}
         %input{type: 'submit'}
+    
+    .sign-out
+      = link_to "Sign out", sessions_path, method: :delete
 
 %header
 
@@ -22,7 +25,6 @@
       = image_tag current_user.avatar_url, alt: current_user.name
     %h1= current_user.display_name
     %small= "@#{current_user.name}"
-    %small= link_to "Sign out", sessions_path, method: :delete
 
 %section{:role => "main"}
 
