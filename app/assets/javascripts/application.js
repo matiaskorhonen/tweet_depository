@@ -12,9 +12,26 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require moment
+//= require moment/en-gb
 //= require_tree .
 
 $(function() {
+
+  moment.lang('en-gb');
+
+  $("time.ago").each(function(index, time) {
+    var human, iso8601, mo;
+    iso8601 = $(time).attr("datetime");
+    mo = moment(iso8601);
+    if (mo.diff(new Date()) < -(1 * 24 * 60 * 60 * 1000) ) {
+      //2:55 PM - 8 Sep 12
+      human = mo.format("[at] HH:MM — MMM YYYY");
+    } else {
+      human = mo.fromNow();
+    }
+    return $(time).html(human);
+  });
 
   $('.timeline select').on('change', function() {
     $(this).parents('form').submit();

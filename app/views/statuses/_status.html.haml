@@ -1,21 +1,21 @@
-%blockquote{ class: (status.is_retweet? ? "retweet" : "tweet") }
-  - if status.is_retweet?
-    <span class="icon ss-retweet"></span>
-  = format_status_text(status)
+- cache status do
+  %blockquote{ class: (status.is_retweet? ? "retweet" : "tweet") }
+    - if status.is_retweet?
+      <span class="icon ss-retweet"></span>
+    = format_status_text(status)
 
-%small
-  - if status.is_retweet?
-    Retweeted
-    = link_to "@#{status.screen_name}", status.twitter_user_url
-  - if status.is_reply?
-    Replied
-  - else
-    Tweeted
-  = link_to status.twitter_url do
-    %time{ datetime: status.tweeted_at.iso8601 }
-      = time_ago_in_words(status.tweeted_at)
-      ago
-  via
-  = status.source.html_safe
-  - if status.is_reply?
-    = link_to "to @#{status.in_reply_to_screen_name}", status.in_reply_to_url
+  %small
+    - if status.is_retweet?
+      Retweeted
+      = link_to "@#{status.screen_name}", status.twitter_user_url
+    - elsif status.is_reply?
+      Replied
+    - else
+      Tweeted
+    = link_to status.twitter_url do
+      %time.ago{ datetime: status.tweeted_at.iso8601 }
+        = l(status.tweeted_at, format: :tweet)
+    via
+    = status.source.html_safe
+    - if status.is_reply?
+      = link_to "to @#{status.in_reply_to_screen_name}", status.in_reply_to_url
