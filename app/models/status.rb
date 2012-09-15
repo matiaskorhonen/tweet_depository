@@ -76,50 +76,54 @@ class Status < ActiveRecord::Base
   end
 
   def self.initial_import_for_user(user_id)
-    @max_id = nil
-    @current_user = User.find(user_id)
-    loop do
-      options = {
-        count: 200,
-        include_rts: true,
-        exclude_replies: false,
-        contributor_details: true,
-        include_entities: true
-      }
+    self.transaction do
+      @max_id = nil
+      @current_user = User.find(user_id)
+      loop do
+        options = {
+          count: 200,
+          include_rts: true,
+          exclude_replies: false,
+          contributor_details: true,
+          include_entities: true
+        }
 
-      if @max_id.present?
-        options[:max_id] = @max_id
+        if @max_id.present?
+          options[:max_id] = @max_id
+        end
+
+        statuses = self.statuses_for_user(@current_user, options)
+
+        break if statuses.count == 0 || statuses.last.id.to_s == @max_id
+
+        statuses.each do |status|
+          self.create_from_hash(status.to_hash, user_id)
+        end
+
+        @max_id = statuses.last[:id].to_s
       end
-
-      statuses = self.statuses_for_user(@current_user, options)
-
-      break if statuses.count == 0 || statuses.last.id.to_s == @max_id
-
-      statuses.each do |status|
-        self.create_from_hash(status.to_hash, user_id)
-      end
-
-      @max_id = statuses.last[:id].to_s
     end
   end
 
   # FIXME: This is still pretty stupid and assumes that there won't be > 200
   # new tweets…
   def self.import_latest_for_user(user_id)
-    current_user = User.find(user_id)
-    if current_user.statuses.any?
-      options = {
-        count: 200,
-        include_rts: true,
-        exclude_replies: false,
-        contributor_details: true,
-        include_entities: true,
-        since_id: current_user.statuses.last.sid
-      }
-      statuses = self.statuses_for_user(current_user, options)
+    self.transaction do
+      current_user = User.find(user_id)
+      if current_user.statuses.any?
+        options = {
+          count: 200,
+          include_rts: true,
+          exclude_replies: false,
+          contributor_details: true,
+          include_entities: true,
+          since_id: current_user.statuses.last.sid
+        }
+        statuses = self.statuses_for_user(current_user, options)
 
-      statuses.each do |status|
-        self.create_from_hash(status.to_hash, user_id)
+        statuses.each do |status|
+          self.create_from_hash(status.to_hash, user_id)
+        end
       end
     end
   end
