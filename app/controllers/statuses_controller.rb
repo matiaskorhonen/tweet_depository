@@ -1,7 +1,6 @@
 class StatusesController < ApplicationController
   def index
-    puts ENV["PUBLIC_TIMELINE"].inspect
-    @user = if ENV["PUBLIC_TIMELINE"] =~ /\Atrue\z/i && User.exists?
+    @user = if public_timeline? && User.exists?
       User.first
     elsif current_user
       current_user
