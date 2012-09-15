@@ -14,17 +14,20 @@
       %form
         %input{type: 'search', results: '5', name: 'search'}
         %input{type: 'submit'}
-    
+
     .sign-out
-      = link_to "Sign out", sessions_path, method: :delete
+      - if current_user
+        = link_to "Sign out", sessions_path, method: :delete
+      - else
+        = link_to "Sign in", "/auth/twitter"
 
 %header
 
   .profile
-    = link_to current_user.twitter_url, class: "avatar" do
-      = image_tag current_user.avatar_url, alt: current_user.name
-    %h1= current_user.display_name
-    %small= "@#{current_user.name}"
+    = link_to @user.twitter_url, class: "avatar" do
+      = image_tag @user.avatar_url, alt: @user.name
+    %h1= @user.display_name
+    %small= "@#{@user.name}"
 
 %section{:role => "main"}
 

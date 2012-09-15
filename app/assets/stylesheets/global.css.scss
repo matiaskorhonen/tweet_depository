@@ -17,7 +17,7 @@ $link:        hsl(196, 100%, 35%);
 /*  --------------------
     Typography & colours
     --------------------  */
-    
+
 $font-size: 14;
 $line-height: 21;
 
@@ -36,7 +36,7 @@ a {
   a:hover {
     border-bottom: 1px solid $link;
   }
-  
+
   a:active {
     color: $aside;
     border-bottom-color: $aside;
@@ -52,31 +52,31 @@ small {
   font-size: em(12);
   line-height: em($line-height, 12);
   color: $aside;
-  
+
   a {
     color: $aside;
   }
-  
+
   a:hover {
     color: $link;
   }
-  
+
   a:active {
     color: $aside
   }
-  
+
 }
 
 nav {
-  
+
   a {
     color: $body;
   }
-  
+
   a:hover {
     color: $link;
   }
-  
+
   a:active {
     color: $aside;
   }
@@ -84,72 +84,72 @@ nav {
   .active a {
     font-weight: bold;
   }
-  
+
   .year {
     color: $aside;
   }
-  
+
 }
 
 blockquote, p {
-  
+
 }
 
 
 /*  -------------
     Mobile layout
     -------------  */
-    
+
 article {
-  
+
 }
 
   nav {
     background: $highlight;
     @include clearfix;
-    
+
     .timeline, .search, .sign-out,
     select, input {
       @include box-sizing(border-box);
     }
-  
+
     .timeline {
       width: 38%;
       float: left;
       padding: lines(0.5) lines(0.25) lines(0.5) lines(0.5);
-      
+
       select {
         width: 100%;
-        font-size: large;        
+        font-size: large;
       }
-      
+
       input[type=submit] {
         display: none;
       }
-      
+
     }
-    
+
     .search {
       width: 38%;
       float: left;
       padding: lines(0.5) lines(0.25) lines(0.5) lines(0.25);
-      
+
       input[type=search] {
         width: 100%;
         font-size: large;
       }
-      
+
       input[type=submit] {
         display: none;
       }
-      
+
     }
-    
+
     .sign-out {
       float: right;
       width: 24%;
       padding: lines(0.5) lines(0.5) lines(0.5) lines(0.25);
-      
+
       a {
         display: block;
         text-align: center;
@@ -160,31 +160,31 @@ article {
         border: 1px solid $border;
         @include border-radius(em(4, 10));
       }
-      
+
         a:hover {
           background: $link;
           color: $background;
         }
-        
+
         a:active {
           background: $highlight;
           color: $aside;
         }
-      
+
     }
   }
-  
+
 
   header {
     position: relative;
   }
-    
+
     .profile {
       padding: lines(1.5) lines(0.5) lines(1);
       @include clearfix;
-      
+
     }
-    
+
       .avatar {
         position: relative;
         width: lines(2);
@@ -193,22 +193,22 @@ article {
         margin-right: lines(0.5);
         overflow: hidden;
         background: $background;
-        
+
         &:hover {
           border: 0;
         }
-        
+
         img {
           width: 100%;
           display: block;
           @include border-radius(em(5));
         }
-        
+
       }
-  
+
   section {
     padding: 0 lines(0.5);
-    
+
     li {
       margin-bottom: lines(1);
       border: 1px solid $border;
@@ -218,20 +218,20 @@ article {
       @include border-radius(em(5));
       background: darken($background, 2.1%);
     }
-    
+
     .ss-retweet:before {
       position: relative;
       top: em(2);
     }
-    
+
   }
-    
+
   footer {
     text-align: center;
     margin-top: lines(1);
     padding-bottom: lines(2);
   }
-  
+
   #login {
     position: absolute;
     left: 0; top: 50%;
@@ -239,7 +239,22 @@ article {
     text-align: center;
     margin-top: lines(-1);
   }
-  
+
+.flash {
+  width: 100%;
+  background: $highlight;
+  border-bottom: 1px solid $aside;
+  text-align: center;
+  cursor: pointer;
+
+  &.notice {
+    color: green;
+  }
+
+  &.alert {
+    color: red;
+  }
+}
 
 /*  -------------
     Mobile layout
@@ -247,45 +262,45 @@ article {
     -------------  */
 
 @media screen and (min-width: 30em) {
-  
+
   header, section, nav .wrapper {
     max-width: lines(24);
     margin: 0 auto;
     @include box-sizing(border-box);
   }
-  
+
   nav {
-    
+
     .timeline {
       padding-right: lines(0.5);
       padding-left: lines(1);
     }
-    
+
     .search {
       padding-left: lines(0.5);
       padding-right: lines(0.5);
     }
-    
+
     .sign-out {
       padding-left: lines(0.5);
       padding-right: lines(1);
-      
+
       a {
         text-transform: uppercase;
         letter-spacing: 1px;
         line-height: em(20, 10);
         padding: 0;
       }
-      
+
     }
-    
+
   }
-  
+
   .profile, section {
     padding-left: lines(1);
     padding-right: lines(1);
   }
-  
+
   .profile {
     margin-right: lines(10);
   }
@@ -296,24 +311,24 @@ article {
 /*  -------------
     Tablet layout
     -------------  */
-    
+
 @media screen and (min-width: 37.5em) {
-  
+
   .profile {
     padding-top: lines(2);
   }
-  
+
 }
 
 
 /*  -----------------
     Widescreen tweaks
     -----------------  */
-    
+
 @media screen and (min-width: 150em) {
-  
+
   body {
     font-size: em(16, 16);
   }
-  
+
 }

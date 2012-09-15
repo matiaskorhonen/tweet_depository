@@ -16,8 +16,14 @@
 
 $(function() {
 
-  $('.timeline select').on('change', function(){
+  $('.timeline select').on('change', function() {
     $(this).parents('form').submit();
   });
-  
+
+  $(".flash").click(function() {
+    $(this).slideUp(function() {
+      $(this).remove();
+    })
+  });
+
 });

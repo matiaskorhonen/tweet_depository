@@ -15,6 +15,9 @@
   = javascript_include_tag "application"
 
 %body
-  
   %article
+    - if notice
+      .flash.notice= notice
+    - if alert
+      .flash.alert= alert
     = yield

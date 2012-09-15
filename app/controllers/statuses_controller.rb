@@ -1,10 +1,17 @@
 class StatusesController < ApplicationController
   def index
-    if current_user
-      @oldest = current_user.statuses.oldest
-      @newest = current_user.statuses.newest
+    puts ENV["PUBLIC_TIMELINE"].inspect
+    @user = if ENV["PUBLIC_TIMELINE"] =~ /\Atrue\z/i && User.exists?
+      User.first
+    elsif current_user
+      current_user
+    end
 
-      @statuses = current_user.statuses.limit(200)
+    if @user
+      @oldest = @user.statuses.oldest
+      @newest = @user.statuses.newest
+
+      @statuses = @user.statuses.limit(200)
 
       if params[:month] && !(params[:month] =~ /\Arecent\z/i)
         begin
