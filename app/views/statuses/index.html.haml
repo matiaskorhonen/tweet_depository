@@ -1,15 +1,16 @@
 %nav#navigation
   .wrapper
     - if @statuses.any? && action_name != "search"
-      .timeline
-        %form
-          %select{ name: "month" }
-            %option Recent
-            - tweet_dates(@oldest, @newest).each do |year, dates|
-              %optgroup{ label: year }
-                - dates.each do |date|
-                  %option{ value: date.strftime("%Y-%m"), selected: date == @date }= date.strftime("%B")
-          %input{type: 'submit'}
+      - cache "timeline_selector" do
+        .timeline
+          %form
+            %select{ name: "month" }
+              %option Recent
+              - tweet_dates(@oldest, @newest).each do |year, dates|
+                %optgroup{ label: year }
+                  - dates.each do |date|
+                    %option{ value: date.strftime("%Y-%m"), selected: date == @date }= date.strftime("%B")
+            %input{type: 'submit'}
 
     - if @statuses.any? || action_name == "search"
       .search
