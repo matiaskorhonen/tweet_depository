@@ -19,6 +19,12 @@ module StatusesHelper
 
     date_range.uniq!
 
-    date_range.group_by { |d| d.strftime("%Y") }
+    date_range = date_range.group_by { |date| date.strftime("%Y") }
+
+    date_range.each_key do |key|
+      date_range[key] = date_range[key].reverse
+    end
+
+    Hash[date_range.sort.reverse]
   end
 end
