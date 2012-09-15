@@ -1,16 +1,10 @@
 class StatusesController < ApplicationController
   def index
-    @user = if public_timeline? && User.exists?
-      User.first
-    elsif current_user
-      current_user
-    end
+    if user
+      @oldest = user.statuses.oldest
+      @newest = user.statuses.newest
 
-    if @user
-      @oldest = @user.statuses.oldest
-      @newest = @user.statuses.newest
-
-      @statuses = @user.statuses.limit(200)
+      @statuses = user.statuses.order_by_sid.limit(200)
 
       if params[:month] && !(params[:month] =~ /\Arecent\z/i)
         begin
@@ -26,6 +20,25 @@ class StatusesController < ApplicationController
       end
     else
       render template: "statuses/unauthenticated"
+    end
+  end
+
+  def search
+    if user && params[:q]
+      @statuses = user.statuses.search(params[:q])
+      render template: "statuses/index"
+    else
+      redirect_to statuses_path
+    end
+  end
+
+  private
+
+  def user
+    @user ||= if public_timeline? && User.exists?
+      User.first
+    elsif current_user
+      current_user
     end
   end
 end

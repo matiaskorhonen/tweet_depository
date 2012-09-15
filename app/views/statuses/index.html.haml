@@ -1,6 +1,6 @@
 %nav#navigation
-  - if @statuses.any?
-    .wrapper
+  .wrapper
+    - if @statuses.any? && action_name != "search"
       .timeline
         %form
           %select{ name: "month" }
@@ -11,10 +11,11 @@
                   %option{ value: date.strftime("%Y-%m"), selected: date == @date }= date.strftime("%B")
           %input{type: 'submit'}
 
+    - if @statuses.any? || action_name == "search"
       .search
-        %form
-          %input{type: 'search', results: '5', name: 'search'}
-          %input{type: 'submit'}
+        = form_tag search_path, method: :get do
+          = search_field_tag :search, params[:q], results: '5', name: 'q'
+          = submit_tag "Search"
 
     .sign-out
       - if current_user
@@ -39,7 +40,10 @@
   - else
     %ul
       %li
-        No Tweets have been imported yet.
+        - if action_name == "search"
+          No results.
+        - else
+          No Tweets have been imported yet.
 
 %footer
   .footer-icons &#9670; &#9670; &#9670;

@@ -6,7 +6,12 @@ class Status < ActiveRecord::Base
 
   belongs_to :user
 
-  default_scope order("sid DESC")
+  scope :order_by_sid, order("sid DESC")
+
+  include PgSearch
+  pg_search_scope :search,
+    against: { text: "A", in_reply_to_screen_name: "B" },
+    using: { tsearch: { dictionary: "english" } }
 
   def twitter_url
     URI::HTTPS.build({
@@ -117,7 +122,7 @@ class Status < ActiveRecord::Base
           exclude_replies: false,
           contributor_details: true,
           include_entities: true,
-          since_id: current_user.statuses.last.sid
+          since_id: current_user.statuses.order_by_sid.last.sid
         }
         statuses = self.statuses_for_user(current_user, options)
 

@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "3.2.7"
+gem "rails", "3.2.8"
 
 gem "foreman"
 gem "haml", "~> 3.2.0.beta.1"
@@ -9,6 +9,7 @@ gem "oj", "~> 1.3.2"
 gem "omniauth-twitter", "~> 0.0.12"
 gem "simple_form", "~> 2.0.2"
 gem "pry-rails"
+gem "pg_search", "~> 0.5.4"
 gem "validates_lengths_from_database", "~> 0.2.0"
 gem "thin", "~> 1.4.1"
 gem "twitter", "~> 3.4.1"
@@ -27,7 +28,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem "sass", "~> 3.2.0.alpha.277"
+  gem "sass", "~> 3.2.0"
   gem "compass-rails", "~> 1.0.3"
   gem "sass-rails",   "~> 3.2.5"
 
