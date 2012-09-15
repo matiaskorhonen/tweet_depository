@@ -52,3 +52,12 @@ rake timeline:update
 *NB. The update task will only import your 200 latest tweets, and so it is important that it is run regularly. On Herouk you should use the [Scheduler addon](https://addons.heroku.com/scheduler).*
 
 If you're running the tasks locally, you should probably prefix them with `foreman run`
+
+Memcache
+--------
+
+In production you should have Memcache installed. On Heroku do:
+
+```
+heroku addons:add memcache
+```

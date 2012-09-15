@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "rails", "3.2.8"
 
+gem "dalli", "~> 2.2.1", group: :production
 gem "foreman"
 gem "haml", "~> 3.2.0.beta.1"
 gem "haml-rails", "~> 0.3.4"
