@@ -34,7 +34,9 @@ $(function() {
   });
 
   $('.timeline select').on('change', function() {
-    $(this).parents('form').submit();
+    re =/\d{4}-\d{2}/;
+    match = re.exec($(this).val());
+    window.location = "/" + (match ? match[0] : "")
   });
 
   $(".flash").click(function() {
