@@ -39,10 +39,18 @@ $(function() {
     window.location = "/" + (match ? match[0] : "")
   });
 
+  // Remove the flash notice on click
   $(".flash").click(function() {
     $(this).slideUp(function() {
       $(this).remove();
     })
   });
+
+  // Remove the flash notices once the user start scroll downwards (with a small delay)
+  $(document).one("scroll", function() {
+    setTimeout(function(){
+      $(".flash").slideUp();
+    }, 3000)
+  })
 
 });
