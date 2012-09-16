@@ -2,8 +2,6 @@
 common: &default_settings
   # ============================== LICENSE KEY ===============================
 
-  dispatcher: 'puma'
-
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
