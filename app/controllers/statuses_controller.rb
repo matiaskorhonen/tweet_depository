@@ -4,7 +4,7 @@ class StatusesController < ApplicationController
       @oldest = user.statuses.oldest
       @newest = user.statuses.newest
 
-      @statuses = user.statuses.order_by_sid.limit(200)
+      @statuses = user.statuses.order_by_sid.limit(50)
 
       if params[:month] && !(params[:month] =~ /\Arecent\z/i)
         begin
@@ -15,7 +15,7 @@ class StatusesController < ApplicationController
       end
 
       unless @date
-        limit = params[:limit].to_i > 0 ? params[:limit].to_i : 200
+        limit = params[:limit].to_i > 0 ? params[:limit].to_i : 50
         @statuses = @statuses.limit(limit)
       end
     else
