@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :public_timeline?, :is_search?
+  helper_method :public_timeline?, :private_timeline?, :is_search?
 
   private
 
@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
 
   def public_timeline?
     ENV["PUBLIC_TIMELINE"].to_s =~ /\Atrue\z/i
+  end
+
+  def private_timeline?
+    !public_timeline?
   end
 
   def is_search?
