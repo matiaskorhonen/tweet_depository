@@ -29,11 +29,12 @@
 
 %header
 
-  .profile
-    = link_to @user.twitter_url, class: "avatar" do
-      = image_tag @user.avatar_url, alt: @user.name
-    %h1= @user.display_name
-    %small= "@#{@user.name}"
+  - cache @user do
+    .profile
+      = link_to @user.twitter_url, class: "avatar" do
+        = image_tag @user.avatar_url, alt: @user.name
+      %h1= @user.display_name
+      %small= "@#{@user.name}"
 
 %section{:role => "main"}
 
