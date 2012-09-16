@@ -2,7 +2,7 @@
 - conditional_html
 %head
   %meta{:charset => "utf-8"}
-  %title Tweet Depository
+  %title= content_for?(:title) ? yield(:title) : "Tweet Depository"
   = csrf_meta_tags
   %meta{:content => "Archive your Tweets", :name => "description"}
   %meta{:content => "on", "http-equiv" => "cleartype"}

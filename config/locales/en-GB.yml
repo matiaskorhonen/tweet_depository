@@ -5,3 +5,6 @@ en-GB:
   time:
     formats:
       tweet: "at %H:%M — %b %Y"
+  date:
+    formats:
+      month_and_year: "%B %Y"

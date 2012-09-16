@@ -1,3 +1,7 @@
+- if action_name == "search"
+  - content_for :title, "Search"
+- elsif @date
+  - content_for :title, "Tweets from #{l(@date, format: :month_and_year)}"
 %nav#navigation
   .wrapper
     - if @statuses.any? && action_name != "search"
@@ -11,7 +15,7 @@
                   %option{ value: date.strftime("%Y-%m"), selected: date == @date }= date.strftime("%B")
           %input{type: 'submit'}
 
-    - if @statuses.any? || action_name == "search"
+    - if @statuses.any? || is_search?
       .search
         = form_tag search_path, method: :get do
           = search_field_tag :search, params[:q], results: '5', name: 'q'
@@ -34,14 +38,16 @@
 %section{:role => "main"}
 
   - if @statuses.any?
+    - if is_search?
+      %p.results_found= "Showing results for ‘#{params[:q]}’"
     %ul
       = list_of @statuses do |status|
         = render status
   - else
     %ul
       %li
-        - if action_name == "search"
-          No results.
+        - if is_search?
+          = "No results found for ‘#{params[:q]}’"
         - else
           No Tweets have been imported yet.
 
