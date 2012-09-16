@@ -28,7 +28,7 @@ class StatusesController < ApplicationController
       @statuses = user.statuses.search(params[:q])
       render template: "statuses/index"
     else
-      redirect_to statuses_path
+      redirect_to root_path
     end
   end
 
