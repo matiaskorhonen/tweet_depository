@@ -1,5 +1,5 @@
 - if action_name == "search"
-  - content_for :title, "Search"
+  - content_for :title, "Searching for ‘#{params[:q]}’"
 - elsif @date
   - content_for :title, "Tweets from #{l(@date, format: :month_and_year)}"
 %nav#navigation
