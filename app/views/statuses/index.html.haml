@@ -4,7 +4,7 @@
   - content_for :title, "Tweets from #{l(@date, format: :month_and_year)}"
 %nav#navigation
   .wrapper
-    - if @statuses.any? && action_name != "search"
+    - if @statuses.any? && !is_search?
       .timeline
         %form
           %select{ name: "month" }
@@ -14,7 +14,8 @@
                 - dates.each do |date|
                   %option{ value: date.strftime("%Y-%m"), selected: date == @date }= date.strftime("%B")
           %input{type: 'submit'}
-
+    - if is_search?
+      = link_to "Home", root_path
     - if @statuses.any? || is_search?
       .search
         = form_tag search_path, method: :get do
