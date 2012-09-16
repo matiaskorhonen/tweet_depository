@@ -6,6 +6,7 @@ gem "dalli", "~> 2.2.1", group: :production
 gem "foreman"
 gem "haml", "~> 3.2.0.beta.1"
 gem "haml-rails", "~> 0.3.4"
+gem "newrelic_rpm", "~> 3.4.2.1"
 gem "oj", "~> 1.3.2"
 gem "omniauth-twitter", "~> 0.0.12"
 gem "simple_form", "~> 2.0.2"
