@@ -4,19 +4,20 @@ class StatusesController < ApplicationController
       @oldest = user.statuses.oldest
       @newest = user.statuses.newest
 
-      @statuses = user.statuses.order_by_sid.limit(50)
+      @statuses = user.statuses.order_by_sid
+      @cache_name = ["statuses", "recent"]
 
-      if params[:month] && !(params[:month] =~ /\Arecent\z/i)
+      if params[:month]
         begin
           @date = Date.strptime("#{params[:month]}-01", "%Y-%m-%d")
           @statuses = @statuses.where("tweeted_at >= ? AND tweeted_at <= ?", @date.beginning_of_month, @date.end_of_month)
+          @cache_name = ["statuses", @date.strftime("%Y-%m")]
         rescue ArgumentError => e
         end
       end
 
       unless @date
-        limit = params[:limit].to_i > 0 ? params[:limit].to_i : 50
-        @statuses = @statuses.limit(limit)
+        @statuses = @statuses.limit(50)
       end
     else
       render template: "statuses/unauthenticated"

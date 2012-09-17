@@ -8,3 +8,4 @@ en-GB:
   date:
     formats:
       month_and_year: "%B %Y"
+      internal: "%Y-%m"

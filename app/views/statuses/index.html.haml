@@ -12,7 +12,7 @@
             - tweet_dates(@oldest, @newest).each do |year, dates|
               %optgroup{ label: year }
                 - dates.each do |date|
-                  %option{ value: date.strftime("%Y-%m"), selected: date == @date }= date.strftime("%B")
+                  %option{ value: l(date, format: :internal), selected: date == @date }= date.strftime("%B")
           %input{type: 'submit'}
     - if is_search?
       = link_to "Home", root_path
@@ -42,9 +42,14 @@
   - if @statuses.any?
     - if is_search?
       %p.results_found= "Showing results for ‘#{params[:q]}’"
-    %ul
-      = list_of @statuses do |status|
-        = render status
+      %ul
+        = list_of @statuses do |status|
+          = render status
+    - else
+      - cache @cache_name do
+        %ul
+          = list_of @statuses do |status|
+            = render status
   - else
     %ul
       %li
