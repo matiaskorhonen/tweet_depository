@@ -33,7 +33,7 @@ First time
 
 This will import your latest 3200 tweets
 
-  rake timeline:initial_import
+    rake timeline:initial_import
 
 ### Set up the Heroku Scheduler
 
