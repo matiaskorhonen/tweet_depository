@@ -4,8 +4,10 @@ module StatusesHelper
   def format_status_text(status)
     text, entities = if status.is_retweet? && status.raw_hash[:retweeted_status]
       [status.raw_hash[:retweeted_status][:text], status.raw_hash[:retweeted_status][:entities]]
-    else
+    elsif status.raw_hash[:entities].present?
       [status.text, status.raw_hash[:entities]]
+    else
+      [status.text, {}]
     end
     auto_link_with_json(text, entities, { username_include_symbol: true }).html_safe
   end
