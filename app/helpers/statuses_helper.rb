@@ -7,9 +7,14 @@ module StatusesHelper
     elsif status.raw_hash[:entities].present?
       [status.text, status.raw_hash[:entities]]
     else
-      [status.text, {}]
+      [status.text, nil]
     end
-    auto_link_with_json(text, entities, { username_include_symbol: true }).html_safe
+
+    if entities
+      auto_link_with_json(text, entities, { username_include_symbol: true }).html_safe
+    else
+      auto_link(text, { username_include_symbol: true }).html_safe
+    end
   end
 
   def tweet_dates(oldest, newest)
