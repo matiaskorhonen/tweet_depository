@@ -37,7 +37,7 @@ namespace :timeline do
       puts "Executing the update. This may take a while and/or explode."
       begin
         @user = User.first
-        statuses = Status.scoped.order("tweeted_at ASC").where("raw_hash NOT LIKE '%:entities%'")
+        statuses = Status.scoped.order("tweeted_at ASC").where("raw_hash NOT LIKE '%:id_str:%'")
         puts "Still need to fix #{statuses.count} statuses"
 
         statuses.limit(50).each do |status|
