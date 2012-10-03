@@ -61,3 +61,8 @@ In production you should have Memcache installed. On Heroku do:
 ```
 heroku addons:add memcache
 ```
+
+Heroku
+------
+
+Read the [HEROKU.md](http://git.io/PATgDg) file for more Heroku specific instructions
