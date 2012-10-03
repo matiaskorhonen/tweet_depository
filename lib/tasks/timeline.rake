@@ -36,7 +36,10 @@ namespace :timeline do
     if User.any?
       puts "Executing the update. This may take a while and/or explode."
       begin
-        Status.scoped.order("tweeted_at ASC").where("raw_hash NOT LIKE '%:entities%'").limit(50).each do |status|
+        statuses = Status.scoped.order("tweeted_at ASC").where("raw_hash NOT LIKE '%:entities%'")
+        puts "Still need to fix #{statuses.count} statuses"
+
+        statuses.limit(50).each do |status|
           break if @user.client.rate_limit_status[:remaining_hits] < 10
 
           hash = @user.client.status(status.sid).to_hash
