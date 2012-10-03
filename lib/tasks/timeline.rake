@@ -36,6 +36,7 @@ namespace :timeline do
     if User.any?
       puts "Executing the update. This may take a while and/or explode."
       begin
+        @user = User.first
         statuses = Status.scoped.order("tweeted_at ASC").where("raw_hash NOT LIKE '%:entities%'")
         puts "Still need to fix #{statuses.count} statuses"
 
