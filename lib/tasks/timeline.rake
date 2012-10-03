@@ -41,7 +41,10 @@ namespace :timeline do
         puts "Still need to fix #{statuses.count} statuses"
 
         statuses.limit(50).each do |status|
-          break if @user.client.rate_limit_status[:remaining_hits] < 10
+          if @user.client.rate_limit_status[:remaining_hits] < 10
+            puts "Too low on remaining hits, aborting"
+            break
+          end
 
           hash = @user.client.status(status.sid).to_hash
 
@@ -52,7 +55,8 @@ namespace :timeline do
           status.in_reply_to_user_id     = hash[:in_reply_to_user_id]
           status.is_retweet              = !!hash[:retweeted_status]
           status.raw_hash                = hash
-          status.save
+          status.save!
+          puts "Fixed #{status.sid}"
         end
       rescue Exception => e
         puts "Uh oh, something went wrong."
