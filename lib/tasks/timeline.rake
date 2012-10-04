@@ -46,20 +46,27 @@ namespace :timeline do
             break
           end
 
-          hash = @user.client.status(status.sid).to_hash
+          begin
+            hash = @user.client.status(status.sid).to_hash
 
-          status.text                    = hash[:text]
-          status.source                  = hash[:source]
-          status.tweeted_at              = hash[:created_at]
-          status.in_reply_to_screen_name = hash[:in_reply_to_screen_name]
-          status.in_reply_to_user_id     = hash[:in_reply_to_user_id]
-          status.is_retweet              = !!hash[:retweeted_status]
-          status.raw_hash                = hash
-          status.save!
+            status.text                    = hash[:text]
+            status.source                  = hash[:source]
+            status.tweeted_at              = hash[:created_at]
+            status.in_reply_to_screen_name = hash[:in_reply_to_screen_name]
+            status.in_reply_to_user_id     = hash[:in_reply_to_user_id]
+            status.is_retweet              = !!hash[:retweeted_status]
+            status.raw_hash                = hash
+            status.save!
+          rescue
+            status.raw_hash[:id_str] = status.sid.to_s
+            status.save!
+            puts "Couldn't fix #{status.sid}"
+          end
+
           puts "Fixed #{status.sid}"
         end
       rescue Exception => e
-        puts "Uh oh, something went wrong."
+        puts "Uh oh, something went wrong (#{e.class})."
       end
     else
       puts "No user was found. Please ign in via the web interface first."
