@@ -26,6 +26,9 @@ class StatusesController < ApplicationController
 
   def search
     if user && params[:q]
+      @oldest = user.statuses.oldest
+      @newest = user.statuses.newest
+    
       @statuses = user.statuses.search(params[:q])
       render template: "statuses/index"
     else

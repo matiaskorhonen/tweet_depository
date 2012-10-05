@@ -4,7 +4,7 @@
   - content_for :title, "Tweets from #{l(@date, format: :month_and_year)}"
 %nav#navigation
   .wrapper
-    - if @statuses.any? && !is_search?
+    - if @oldest.present? && @newest.present?
       .timeline
         %form
           %select{ name: "month" }
@@ -14,19 +14,11 @@
                 - dates.each do |date|
                   %option{ value: l(date, format: :internal), selected: date == @date }= date.strftime("%B")
           %input{type: 'submit'}
-    - if is_search?
-      = link_to "Home", root_path
     - if @statuses.any? || is_search?
       .search
         = form_tag search_path, method: :get do
           = search_field_tag :search, params[:q], results: '5', name: 'q'
           = submit_tag "Search"
-
-    .sign-out
-      - if current_user
-        = link_to "Sign out", sessions_path, method: :delete
-      - else
-        = link_to "Sign in", "/auth/twitter"
 
 %header
 
@@ -41,7 +33,10 @@
 
   - if @statuses.any?
     - if is_search?
-      %p.results_found= "Showing results for ‘#{params[:q]}’"
+      %h2
+        = link_to "← Home", root_path
+        |
+        = "Results for ‘#{params[:q]}’"
       %ul
         = list_of @statuses do |status|
           = render status
@@ -51,12 +46,13 @@
           = list_of @statuses do |status|
             = render status
   - else
-    %ul
-      %li
-        - if is_search?
-          = "No results found for ‘#{params[:q]}’"
-        - else
-          No Tweets have been imported yet.
+    %h2
+      - if is_search?
+        = link_to "← Home", root_path
+        |
+        = "No results found for ‘#{params[:q]}’"
+      - else
+        No Tweets have been imported yet.
 
 %footer
   .footer-icons &#9670; &#9670; &#9670;

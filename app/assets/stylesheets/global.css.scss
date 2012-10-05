@@ -26,6 +26,7 @@ body {
   line-height: lines(1);
   font-family: 'Helvetica Neue', sans-serif;
   color: $body;
+  background: darken($background, 2.1%);
 }
 
 a {
@@ -46,6 +47,13 @@ h1 {
   color: $emphasis;
   font-size: em(17);
   line-height: em(20, 17);
+}
+
+h2 {
+  font-weight: 600;
+  color: $emphasis;
+  font-size: 1em;
+  margin-bottom: em($line-height);
 }
 
 small {
@@ -114,7 +122,7 @@ article {
     }
 
     .timeline {
-      width: 38%;
+      width: 50%;
       float: left;
       padding: lines(0.5) lines(0.25) lines(0.5) lines(0.5);
 
@@ -130,9 +138,9 @@ article {
     }
 
     .search {
-      width: 38%;
+      width: 50%;
       float: left;
-      padding: lines(0.5) lines(0.25) lines(0.5) lines(0.25);
+      padding: lines(0.5) lines(0.5) lines(0.5) lines(0.25);
 
       input[type=search] {
         width: 100%;
@@ -142,34 +150,6 @@ article {
       input[type=submit] {
         display: none;
       }
-
-    }
-
-    .sign-out {
-      float: right;
-      width: 24%;
-      padding: lines(0.5) lines(0.5) lines(0.5) lines(0.25);
-
-      a {
-        display: block;
-        text-align: center;
-        background: $highlight;
-        font-size: em(10);
-        line-height: em(19, 10);
-        padding-bottom: em(1, 10);
-        border: 1px solid $border;
-        @include border-radius(em(4, 10));
-      }
-
-        a:hover {
-          background: $link;
-          color: $background;
-        }
-
-        a:active {
-          background: $highlight;
-          color: $aside;
-        }
 
     }
   }
@@ -216,7 +196,7 @@ article {
       list-style: none;
       display: block;
       @include border-radius(em(5));
-      background: darken($background, 2.1%);
+      background: $background;
     }
 
     .ss-retweet:before {
@@ -278,20 +258,7 @@ article {
 
     .search {
       padding-left: lines(0.5);
-      padding-right: lines(0.5);
-    }
-
-    .sign-out {
-      padding-left: lines(0.5);
       padding-right: lines(1);
-
-      a {
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        line-height: em(20, 10);
-        padding: 0;
-      }
-
     }
 
   }
