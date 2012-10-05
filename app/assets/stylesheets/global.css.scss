@@ -114,6 +114,7 @@ article {
 
   nav {
     background: $highlight;
+    border-bottom: 1px solid $border;
     @include clearfix;
 
     .timeline, .search, .sign-out,
