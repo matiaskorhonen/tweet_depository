@@ -2,6 +2,8 @@
   - content_for :title, "Searching for ‘#{params[:q]}’"
 - elsif @date
   - content_for :title, "Tweets from #{l(@date, format: :month_and_year)}"
+- elsif @user.present?
+  - content_for :title, "@#{@user.name}'s Tweet Depository"
 %nav#navigation
   .wrapper
     - if @oldest.present? && @newest.present?
