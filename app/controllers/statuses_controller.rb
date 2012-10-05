@@ -30,6 +30,7 @@ class StatusesController < ApplicationController
       @newest = user.statuses.newest
     
       @statuses = user.statuses.search(params[:q])
+      @statuses = @statuses.limit(500) unless params[:bypass_limit]
       render template: "statuses/index"
     else
       redirect_to root_path
