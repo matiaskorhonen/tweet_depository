@@ -13,6 +13,10 @@ class Status < ActiveRecord::Base
     against: { text: "A", in_reply_to_screen_name: "B" },
     using: { tsearch: { dictionary: "english" } }
 
+  def html_id
+    "status_#{sid}"
+  end
+
   def twitter_url
     URI::HTTPS.build({
       host: "twitter.com",

@@ -39,14 +39,10 @@
         = link_to "← Home", root_path
         |
         = "Results for ‘#{params[:q]}’"
-      %ul
-        = list_of @statuses do |status|
-          = render status
+      = render "statuses"
     - else
       - cache @cache_name do
-        %ul
-          = list_of @statuses do |status|
-            = render status
+        = render "statuses"
   - else
     %h2
       - if is_search?

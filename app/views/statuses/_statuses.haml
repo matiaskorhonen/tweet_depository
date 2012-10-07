@@ -1,0 +1,3 @@
+%ul
+  = @statuses.each do |status|
+    %li{ id: status.html_id }= render status
