@@ -54,7 +54,7 @@ To update the timeline, you can run:
 rake timeline:update
 ```
 
-*NB. The update task will only import your 200 latest tweets, and so it is important that it is run regularly. On Herouk you should use the [Scheduler addon](https://addons.heroku.com/scheduler).*
+*NB. The update task will only import your 200 latest tweets, and so it is important that it is run regularly. On Heroku you should use the [Scheduler addon](https://addons.heroku.com/scheduler).*
 
 The Rails cache can be cleared with:
 
