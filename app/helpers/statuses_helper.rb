@@ -1,6 +1,12 @@
 module StatusesHelper
   include Twitter::Autolink
 
+  # Skip the t.co redirect if possible
+  def link_to_text(entity, text, href, attributes = {}, options = {})
+    href = entity[:expanded_url] if entity[:expanded_url]
+    super(entity, text, href, attributes, options)
+  end
+
   def format_status_text(status)
     text, entities = if status.is_retweet? && status.raw_hash[:retweeted_status]
       [status.raw_hash[:retweeted_status][:text], status.raw_hash[:retweeted_status][:entities]]
