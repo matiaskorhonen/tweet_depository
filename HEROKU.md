@@ -43,3 +43,11 @@ This will import your latest 3200 tweets
   * ` rake timeline:update`
 
 *Note: this will only import your latest 200 tweets each hour, so don't tweet more than that :)*
+
+### The Cache
+
+The statuses are cached, so after deploying the app, you may need to clear the Rails cache to see some updates:
+
+```
+heroku run rake cache:clear
+```
