@@ -18,13 +18,13 @@ $link:        hsl(196, 100%, 35%);
     Typography & colours
     --------------------  */
 
-$font-size: 14;
-$line-height: 21;
+$font-size: 16;
+$line-height: 22;
 
 body {
   font-size: em($font-size, 16);
   line-height: lines(1);
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: source-sans-pro, sans-serif;
   color: $body;
   background: $highlight;
 }
@@ -45,20 +45,21 @@ a {
 
 h1 {
   color: $emphasis;
-  font-size: em(17);
-  line-height: em(20, 17);
+  font-size: em(26);
+  line-height: lines(1.5, 26);
 }
 
 h2 {
-  font-weight: 600;
   color: $emphasis;
   font-size: 1em;
   margin-bottom: em($line-height);
 }
 
 small {
-  font-size: em(12);
-  line-height: em($line-height, 12);
+  display: block;
+  font-size: em(13);
+  line-height: em(18, 13);
+  margin-top: em(6, 13);
   color: $aside;
 
   a {
@@ -73,6 +74,10 @@ small {
     color: $aside
   }
 
+}
+
+h1, h2, strong {
+  font-weight: 600;
 }
 
 nav {
@@ -125,7 +130,7 @@ article {
     .timeline {
       width: 50%;
       float: left;
-      padding: lines(0.5) lines(0.25) lines(0.5) lines(0.5);
+      padding: lines(0.382) lines(0.382/2) lines(0.382) lines(0.382);
 
       select {
         width: 100%;
@@ -141,7 +146,7 @@ article {
     .search {
       width: 50%;
       float: left;
-      padding: lines(0.5) lines(0.5) lines(0.5) lines(0.25);
+      padding: lines(0.382) lines(0.382) lines(0.382) lines(0.382/2);
 
       input[type=search] {
         width: 100%;
@@ -161,23 +166,34 @@ article {
   }
 
     .profile {
-      padding: lines(1.5) lines(0.5) lines(1);
-      @include clearfix;
+      padding: lines(1.618) lines(0.382) lines(1);
+      text-align: center;
+    }
+      
+      .profile p {
+        color: $aside;
+      }
 
+  section {
+    padding: 0 lines(0.382);
+
+    li {
+      margin-bottom: lines(0.618);
+      border: 1px solid $border;
+      padding: lines(0.618);
+      list-style: none;
+      display: block;
+      position: relative;
+      @include border-radius(em(8));
+      background: $background;
     }
 
       .avatar {
-        position: relative;
-        width: lines(2);
-        height: lines(2);
         float: left;
-        margin-right: lines(0.5);
+        width: em(18*2, 13);
+        margin-right: lines(0.382, 13);
         overflow: hidden;
         background: $background;
-
-        &:hover {
-          border: 0;
-        }
 
         img {
           width: 100%;
@@ -186,31 +202,17 @@ article {
         }
 
       }
-
-  section {
-    padding: 0 lines(0.5);
-
-    li {
-      margin-bottom: lines(0.5);
-      border: 1px solid $border;
-      padding: lines(0.5);
-      list-style: none;
-      display: block;
-      @include border-radius(em(8));
-      background: $background;
-    }
-
-    .ss-retweet:before {
-      position: relative;
-      top: em(2);
-    }
+      
+      small {
+        min-height: lines(1.5, 13);
+      }
 
   }
 
   footer {
     text-align: center;
     margin-top: lines(1);
-    padding-bottom: lines(2);
+    padding-bottom: lines(2.618);
   }
 
   #login {
@@ -268,11 +270,23 @@ article {
     padding-left: lines(1);
     padding-right: lines(1);
   }
-
-  .profile {
-    margin-right: lines(10);
+  
+  section { 
+   
+    li {
+      
+    }
+  
+    .avatar {
+      width: em(18, 13);
+      margin-right: lines(0.236, 13);
+    }
+    
+    small {
+      min-height: 0;
+    }
+    
   }
-
 }
 
 
@@ -281,14 +295,8 @@ article {
     -------------  */
 
 @media screen and (min-width: 37.5em) {
-  
-  body {
-    font-size: em(16, 16);
-  }
-  
-  .profile {
-    padding-top: lines(2);
-  }
+
+
 
 }
 

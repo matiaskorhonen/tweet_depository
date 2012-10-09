@@ -1,10 +1,12 @@
 - cache status do
+  
   %blockquote{ class: (status.is_retweet? ? "retweet" : "tweet") }
-    - if status.is_retweet?
-      <span class="icon ss-retweet"></span>
     = format_status_text(status)
 
   %small
+    - if !status.is_retweet?
+      .avatar
+        = image_tag @user.avatar_url, alt: @user.name
     - if status.is_retweet?
       Retweeted
       = link_to "@#{status.screen_name}", status.twitter_user_url
