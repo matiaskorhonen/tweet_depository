@@ -66,3 +66,10 @@ Heroku
 ------
 
 Read the [HEROKU.md](http://git.io/PATgDg) file for more Heroku specific instructions
+
+License & Copyright
+-------------------
+
+Copyright © 2012 Matias Korhonen & Joni Korpi
+
+Licensed under the MIT license. See the LICENSE.txt file for the full license text.
