@@ -17,9 +17,9 @@ module StatusesHelper
     end
 
     if entities
-      auto_link_with_json(text, entities, { username_include_symbol: true }).html_safe
+      auto_link_with_json(text, entities, { username_include_symbol: true, url_class: "autolinked" }).html_safe
     else
-      auto_link(text, { username_include_symbol: true }).html_safe
+      auto_link(text, { username_include_symbol: true, url_class: "autolinked" }).html_safe
     end
   end
 
