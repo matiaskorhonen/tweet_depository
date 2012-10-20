@@ -21,7 +21,6 @@ $(function() {
 
   $("li blockquote").each(function(index, status) {
     if (!$(status).find("a.autolinked").length) {
-      console.log($(status).html());
       $(status).html($(status).html().autoLink({ rel: "nofollow", class: "js-autolinked" }));
     }
   });
