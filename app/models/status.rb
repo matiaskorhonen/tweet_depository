@@ -32,6 +32,14 @@ class Status < ActiveRecord::Base
     end
   end
 
+  def avatar_url
+    if raw_hash[:retweeted_status].present?
+      self.raw_hash[:retweeted_status][:user][:profile_image_url_https]
+    else
+      self.raw_hash[:user][:profile_image_url_https]
+    end
+  end
+
   def twitter_user_url
     URI::HTTPS.build({
       host: "twitter.com",
