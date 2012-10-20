@@ -24,7 +24,7 @@ $line-height: 22;
 body {
   font-size: em($font-size, 16);
   line-height: lines(1);
-  font-family: source-sans-pro, sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   color: $body;
   background: $highlight;
 }
