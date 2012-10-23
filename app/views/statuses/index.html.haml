@@ -53,3 +53,13 @@
 
 %footer
   .footer-icons &#9670; &#9670; &#9670;
+
+  - if @oldest.present? && @newest.present?
+    %noscript
+      %nav.timeline
+        = link_to "Recent", root_path
+        - tweet_dates(@oldest, @newest).each do |year, dates|
+          .year
+            %h3= year
+            - dates.each do |date|
+              = link_to_unless (date == @date), date.strftime("%B"), statuses_for_month_path(month: l(date, format: :internal))
