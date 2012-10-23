@@ -12,12 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.lazyload
 //= require moment
 //= require moment/en-gb
 //= require autolink
 //= require_tree .
 
 $(function() {
+
+  $("img.lazy").show().lazyload();
 
   $("li blockquote").each(function(index, status) {
     if (!$(status).find("a.autolinked").length) {

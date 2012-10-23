@@ -4,9 +4,10 @@
     = format_status_text(status)
 
   %small
-    - if !status.is_retweet?
-      .avatar
-        = image_tag @user.avatar_url, alt: @user.name
+    .avatar
+      = image_tag "grey.gif", alt: status.screen_name, :"data-original" => status.avatar_url, :class => "lazy"
+      %noscript
+        = image_tag status.avatar_url, alt: status.screen_name
     - if status.is_retweet?
       Retweeted
       = link_to "@#{status.screen_name}", status.twitter_user_url
