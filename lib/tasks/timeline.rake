@@ -27,7 +27,20 @@ namespace :timeline do
         puts "Uh oh, something went wrong."
       end
     else
-      puts "No user was found. Please ign in via the web interface first."
+      puts "No user was found. Please sign in via the web interface first."
+    end
+  end
+
+  desc "Update your user info"
+  task :update_user => :environment do
+    if User.any?
+      begin
+        User.first.update_from_twitter!
+      rescue Exception => e
+        puts "Uh oh, something went wrong."
+      end
+    else
+      puts "No user was found. Please sign in via the web interface first."
     end
   end
 

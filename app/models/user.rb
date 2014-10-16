@@ -39,15 +39,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def update_from_twitter!
+    user_hash = client.user(self.uid).to_hash
+    self.raw_auth_hash = HashWithIndifferentAccess.new(user_hash)
+    self.save!
+  end
+
   def client
     @client ||= begin
-      Twitter.configure do |config|
+      Twitter::REST::Client.new do |config|
         config.consumer_key = ENV["TWITTER_KEY"]
         config.consumer_secret = ENV["TWITTER_SECRET"]
-        config.oauth_token = credentials["token"]
-        config.oauth_token_secret = credentials["secret"]
+        config.access_token = credentials["token"]
+        config.access_token_secret = credentials["secret"]
       end
-      Twitter
     end
   end
 end

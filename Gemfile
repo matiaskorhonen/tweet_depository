@@ -18,7 +18,7 @@ gem "pg_search", "~> 0.5.4"
 gem "rails-i18n"
 gem "validates_lengths_from_database", "~> 0.2.0"
 gem "thin", "~> 1.6.3"
-gem "twitter", "~> 4.8.1"
+gem 'twitter', '~> 5.11.0'
 gem "twitter-text", "~> 1.5.0"
 
 group :development do
