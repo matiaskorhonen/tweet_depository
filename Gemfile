@@ -5,7 +5,6 @@ ruby "2.1.3"
 gem "rails", "3.2.19"
 
 gem "airbrake", "~> 3.2.1"
-gem "dalli", "~> 2.2.1", group: :production
 gem "foreman"
 gem "haml"
 gem "haml-rails", "~> 0.3.4"
@@ -44,3 +43,8 @@ group :assets do
 end
 
 gem "jquery-rails"
+
+group :production do
+  gem "dalli", "~> 2.2.1"
+  gem "rails_12factor"
+end
